@@ -1,0 +1,32 @@
+{
+  "updated_at": "2026-07-18T00:00:00.000Z",
+  "patterns": [
+    {
+      "id": "yield_stable_base",
+      "label": "stable_base_yield",
+      "apr_bps": 420,
+      "risk_score": 0.22,
+      "venues": ["clrty_l1_staking", "usdc_mm"],
+      "lookback_days": 30,
+      "notes": "Low-vol base yield from staking + MM inventory"
+    },
+    {
+      "id": "yield_vol_harvest",
+      "label": "volatility_harvest",
+      "apr_bps": 980,
+      "risk_score": 0.61,
+      "venues": ["fx_oracle_arb", "delta_neutral"],
+      "lookback_days": 14,
+      "notes": "Harvest short-horizon FX/oracle dislocation"
+    },
+    {
+      "id": "yield_liquidity_provision",
+      "label": "liquidity_provision",
+      "apr_bps": 650,
+      "risk_score": 0.41,
+      "venues": ["amm_band", "rfq_desk"],
+      "lookback_days": 21,
+      "notes": "Provide inventory around oracle mid with bounded inventory"
+    }
+  ]
+}

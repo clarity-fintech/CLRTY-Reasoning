@@ -1,0 +1,28 @@
+{
+  "name": "@clarity-fintech/clrty-reasoning",
+  "version": "0.1.0",
+  "description": "CLRTY Reasoning-Core — yield strategy service grounded in Delta patterns + LLM",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "dev": "tsx src/server.ts",
+    "test": "CLRTY_RPC_SMOKE=0 vitest run",
+    "smoke": "CLRTY_RPC_SMOKE=1 tsx src/server.ts --smoke"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "license": "Apache-2.0"
+}
