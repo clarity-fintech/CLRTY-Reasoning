@@ -1,0 +1,19 @@
+{
+  "skill_id": "CLRTY-RC-001",
+  "name": "CLRTY Reasoning Core",
+  "components": [
+    "https://www.clarity-fintech.com/"
+  ],
+  "operational_logic": {
+    "intent": "Yield strategy grounded on CLRTY-1 tx samples",
+    "execution_path": "Patterns -> CLRTY-1 tip/txs -> LLM strategy",
+    "substrate": "CLRTY-1"
+  },
+  "security_hardening": "eBPF-monitored socket connection to CLRTY-1 RPC/API endpoints",
+  "clrty1": {
+    "chain_id": "clrty-1",
+    "numeric_chain_id": 1202,
+    "denom": "uclrty",
+    "rpc_env": "CLRTY_L1_RPC"
+  }
+}

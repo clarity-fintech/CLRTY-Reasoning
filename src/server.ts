@@ -3,6 +3,8 @@ import { loadClrty1Config, probeClrty1, rpcSmokeEnabled } from "./clrty1.js";
 import { databricksConfigured, loadPatterns } from "./databricks.js";
 import { generateYieldStrategy, resolveProvider } from "./llm.js";
 import { fetchRecentTxs } from "./txs.js";
+import { validateEbpfPolicy } from "./security/validate_ebpf.js";
+import { poolLoopsVersion } from "./liquidity/pool_loops.js";
 
 export function createApp() {
   const app = express();
@@ -11,6 +13,7 @@ export function createApp() {
   app.get("/health", async (_req, res) => {
     const cfg = loadClrty1Config();
     const probe = await probeClrty1(cfg);
+    const ebpf = validateEbpfPolicy();
     res.status(200).json({
       ok: true,
       service: "CLRTY-Reasoning",
@@ -24,6 +27,12 @@ export function createApp() {
         source: probe.source,
         error: probe.error,
       },
+      ebpf_policy: {
+        ok: ebpf.ok,
+        version: ebpf.version,
+        error: ebpf.error,
+      },
+      pool_loops: poolLoopsVersion(),
     });
   });
 
