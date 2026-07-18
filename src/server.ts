@@ -1,5 +1,10 @@
 import express from "express";
-import { loadClrty1Config, probeClrty1, rpcSmokeEnabled } from "./clrty1.js";
+import {
+  loadClrty1Config,
+  probeClrty1,
+  getClrty1ConnectionReport,
+  rpcSmokeEnabled,
+} from "./clrty1.js";
 import { databricksConfigured, loadPatterns } from "./databricks.js";
 import { generateYieldStrategy, resolveProvider } from "./llm.js";
 import { fetchRecentTxs } from "./txs.js";
@@ -12,21 +17,14 @@ export function createApp() {
 
   app.get("/health", async (_req, res) => {
     const cfg = loadClrty1Config();
-    const probe = await probeClrty1(cfg);
+    const clrty1 = await getClrty1ConnectionReport(cfg);
     const ebpf = validateEbpfPolicy();
     res.status(200).json({
       ok: true,
       service: "CLRTY-Reasoning",
       llm_provider: resolveProvider(),
       databricks: databricksConfigured() ? "configured" : "local_json",
-      clrty1: {
-        ok: probe.ok,
-        chainId: probe.chainId,
-        tipHeight: probe.tipHeight,
-        rpcUrl: probe.rpcUrl,
-        source: probe.source,
-        error: probe.error,
-      },
+      clrty1,
       ebpf_policy: {
         ok: ebpf.ok,
         version: ebpf.version,
