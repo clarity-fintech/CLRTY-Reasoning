@@ -23,10 +23,16 @@ describe.skipIf(!live)("clrty1 live connection", () => {
       });
       const probe = await probeClrty1(cfg);
       expect(probe.ok).toBe(true);
+      // chain identity — normalize hex (eth_chainId 0x4b2 == 1202) like the probe does
+      const seenChain = String(probe.chainId).trim().toLowerCase();
+      const seenNumeric = seenChain.startsWith("0x")
+        ? String(parseInt(seenChain, 16))
+        : seenChain;
       expect(
-        probe.chainId === CLRTY1_CHAIN_ID ||
-          String(probe.chainId) === String(CLRTY1_NUMERIC_CHAIN_ID) ||
-          String(probe.chainId).toLowerCase().includes("clrty-1"),
+        seenChain === CLRTY1_CHAIN_ID ||
+          seenChain.includes("clrty-1") ||
+          seenNumeric === String(CLRTY1_NUMERIC_CHAIN_ID) ||
+          seenChain === String(CLRTY1_NUMERIC_CHAIN_ID),
       ).toBe(true);
       expect(probe.fallbacks_tried.length).toBeGreaterThan(0);
       expect(["rpc", "rpc_fallback", "api_rpc", "api_chain_affirm", "exchange_health"]).toContain(
