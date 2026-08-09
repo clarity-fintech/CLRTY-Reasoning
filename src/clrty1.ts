@@ -80,14 +80,11 @@ function affirmsChain(
 ): boolean {
   if (seen == null || seen === "") return false;
   const raw = String(seen).trim();
-  const normalized = raw.startsWith("0x")
-    ? String(parseInt(raw, 16))
-    : raw;
   const expectNum = String(cfg.numericChainId);
+  // CLRTY-1 native identity only — ETH chain ids (hex 0x…) are not accepted.
   return (
     raw === cfg.chainId ||
     raw.toLowerCase() === cfg.chainId.toLowerCase() ||
-    normalized === expectNum ||
     raw === expectNum ||
     raw.toLowerCase().includes("clrty-1")
   );
@@ -117,7 +114,7 @@ async function probeRpcEndpoint(
   let seenChain: string | undefined;
   let lastError: string | undefined;
 
-  for (const method of ["clrty_chainId", "eth_chainId", "net_version"] as const) {
+  for (const method of ["clrty_chainId", "net_version"] as const) {
     const r = await jsonRpc<string>(rpcUrl, method);
     if (r.ok && r.data != null) {
       seenChain = String(r.data);
@@ -126,7 +123,7 @@ async function probeRpcEndpoint(
     lastError = r.ok ? undefined : r.error;
   }
 
-  for (const method of ["clrty_blockNumber", "eth_blockNumber"] as const) {
+  for (const method of ["clrty_blockNumber"] as const) {
     const r = await jsonRpc<string>(rpcUrl, method);
     if (r.ok && r.data != null) {
       tip = r.data;
