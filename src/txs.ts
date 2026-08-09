@@ -32,12 +32,8 @@ export async function fetchRecentTxs(
 }
 
 async function fetchViaRpc(cfg: Clrty1Config, limit: number): Promise<TxSummary[]> {
-  const tip = await jsonRpc<string>(cfg.rpcUrl, "eth_blockNumber");
-  if (!tip.ok || tip.data == null) {
-    const alt = await jsonRpc<string>(cfg.rpcUrl, "clrty_blockNumber");
-    if (!alt.ok || alt.data == null) return [];
-    return fetchBlockTxs(cfg, alt.data, limit);
-  }
+  const tip = await jsonRpc<string>(cfg.rpcUrl, "clrty_blockNumber");
+  if (!tip.ok || tip.data == null) return [];
   return fetchBlockTxs(cfg, tip.data, limit);
 }
 
