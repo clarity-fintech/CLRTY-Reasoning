@@ -1,0 +1,14 @@
+{
+  "schema": "clrty.beacon_meta/v1",
+  "updated_at": "2026-07-29T03:15:03Z",
+  "repo_slug": "CLRTY-Reasoning",
+  "beacon_id": "clrty-clrty-reasoning",
+  "node_name": "CLRTY-CLRTY-REASONING",
+  "github": "https://github.com/clarity-fintech/CLRTY-Reasoning",
+  "superstructure_root": "/Users/william/$CLRTY_PROJECT",
+  "superstructure_link": "../../../CLRTY_SUBSTRATE/boot/clrty_superstructure.json",
+  "symlinks": {
+    "clrty_superstructure.json": "../../../CLRTY_SUBSTRATE/boot/clrty_superstructure.json"
+  },
+  "framework_twin": "moniversive/framework/beacons/clrty-reasoning.mis"
+}

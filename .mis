@@ -1,0 +1,27 @@
+// CLRTY-CLRTY-REASONING engine root — MARE stub / misc kernel only
+// GitHub: https://github.com/clarity-fintech/CLRTY-Reasoning
+
+module ClrtyCLRTYReasoningEngine {
+
+  invariant letter_hash_bound: letter_hash_root != @0;
+  invariant deep_root_moniversive: deep_root == moniversive;
+  invariant settlement_chain: chain_id == 1202;
+  invariant compiler_kernel_misc: compiler_kernel == misc;
+  invariant active_kernel_only: active_kernel == misc;
+
+  outcome mare_bind(cfg: Bytes) {
+    require cfg != @0;
+    constraint mare_bound == true;
+  }
+
+  outcome opcode_pipeline(stage: Bytes) {
+    require stage != @0;
+    constraint pipeline_ok == true;
+  }
+
+  outcome settle_clrty1(intent: Bytes) {
+    require intent != @0;
+    constraint chain_id == 1202;
+    constraint settlement_network == clrty_1;
+  }
+}

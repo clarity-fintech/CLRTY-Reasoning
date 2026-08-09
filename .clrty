@@ -1,0 +1,28 @@
+// CLRTY-CLRTY-REASONING ecosystem manifest — legacy .clrty surface
+// GitHub: https://github.com/clarity-fintech/CLRTY-Reasoning
+// Superstructure: ../../../CLRTY_SUBSTRATE/boot/clrty_superstructure.json
+
+module ClrtyCLRTYReasoningManifest {
+
+  invariant letter_hash_bound: letter_hash_root != @0;
+  invariant deep_root_moniversive: deep_root == moniversive;
+  invariant settlement_chain: chain_id == 1202;
+  invariant bind_chain_id: chain_id == 1202;
+  invariant compiler_kernel_misc: compiler_kernel == misc;
+
+  outcome bind_chain(manifest: Bytes) {
+    require manifest != @0;
+    constraint settlement_network == clrty_1;
+    constraint chain_id == 1202;
+  }
+
+  outcome link_beacon(path: Bytes) {
+    require path != @0;
+    constraint beacon_linked == true;
+  }
+
+  outcome parent_superstructure(root: Bytes) {
+    require root != @0;
+    constraint superstructure_linked == true;
+  }
+}
