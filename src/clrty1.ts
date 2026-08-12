@@ -10,6 +10,38 @@ export const DEFAULT_EXCHANGE_HEALTH =
 export const DEFAULT_API_BASE = "https://api.clarity-fintech.com";
 export const DEFAULT_RPC = "https://rpc.clarity-fintech.com";
 
+/** ~400ms confirmation/finality cap across all CLRTY-1 clusters. */
+export const CLRTY1_FINALITY_CAP_MS = 400;
+
+/** All CLRTY-1 clusters (same chain clrty-1 / 1202). */
+export const CLRTY1_NETWORKS = {
+  mainnet: {
+    rpc: "https://rpc.clarity-fintech.com",
+    ws: "wss://rpc.clarity-fintech.com",
+    api: "https://api.clarity-fintech.com",
+    explorer: "https://explorer.clarity-fintech.com",
+    chainId: CLRTY1_CHAIN_ID,
+    numericChainId: CLRTY1_NUMERIC_CHAIN_ID,
+    finalityCapMs: CLRTY1_FINALITY_CAP_MS,
+  },
+  testnet: {
+    rpc: "https://testnet-api.clarity-fintech.com",
+    ws: "wss://testnet-api.clarity-fintech.com",
+    api: "https://testnet-api.clarity-fintech.com",
+    chainId: CLRTY1_CHAIN_ID,
+    numericChainId: CLRTY1_NUMERIC_CHAIN_ID,
+    finalityCapMs: CLRTY1_FINALITY_CAP_MS,
+  },
+  devnet: {
+    rpc: "https://devnet-api.clarity-fintech.com",
+    ws: "wss://devnet-api.clarity-fintech.com",
+    api: "https://devnet-api.clarity-fintech.com",
+    chainId: CLRTY1_CHAIN_ID,
+    numericChainId: CLRTY1_NUMERIC_CHAIN_ID,
+    finalityCapMs: CLRTY1_FINALITY_CAP_MS,
+  },
+} as const;
+
 export type Clrty1Config = {
   rpcUrl: string;
   rpcFallbackUrl?: string;

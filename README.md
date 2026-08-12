@@ -111,6 +111,14 @@ Test files: `tests/clrty1_live.test.ts`, `tests/reasoning.test.ts`
   settlement context and submit/observe activity.
 - Configure the endpoint via the `.env` values above; the `smoke` script verifies reachability.
 
+**Networks** — all clusters share chain `clrty-1` / `1202` and a ~400 ms confirmation/finality cap (`CLRTY1_NETWORKS` / `CLRTY1_FINALITY_CAP_MS` in `src/clrty1.ts`):
+
+| Cluster | RPC | API |
+| --- | --- | --- |
+| mainnet | https://rpc.clarity-fintech.com | https://api.clarity-fintech.com |
+| testnet | https://testnet-api.clarity-fintech.com | https://testnet-api.clarity-fintech.com |
+| devnet | https://devnet-api.clarity-fintech.com | https://devnet-api.clarity-fintech.com |
+
 ## Security
 
 - `security/CHECKLIST.md` — pre-deploy security checklist.
